@@ -20,3 +20,11 @@ export const generateTokens = (user) => {
     refreshToken: refreshToken,
   };
 };
+
+
+export const sendRefreshToken = (event, token)=>{
+  setCookie(event.res ,"refresh_token",token , {
+    httpOnly:true,
+    sameSite:true
+  })
+}
