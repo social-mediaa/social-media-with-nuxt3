@@ -6,6 +6,7 @@ export default defineEventHandler(async (event) => {
   const cookies = parseCookies(event);
   const refreshToken = cookies.refresh_token;
   if (!refreshToken) {
+    console.log('here😢',refreshToken);
     return sendError(
       event,
       createError({
