@@ -7,11 +7,14 @@ import { sendError } from "h3"
 
 
 export default defineEventHandler (async (event)=>{
+    console.log('event🤦‍♀️🤦',event);
+
     const body = await readBody(event)
 
     const {username,password} = body
 
     if(!username || !password){
+        console.log('ssss',event);
         return sendError(event , createError({
             statusCode:400,
             statusMessage:"invalid params"
@@ -23,7 +26,7 @@ export default defineEventHandler (async (event)=>{
     if(!user){
         return sendError(event , createError({
             statusCode:400,
-            statusMessage:"Username pr Password is invalid"
+            statusMessage:"Username or Password is invalid"
         }))
     }
 
@@ -40,7 +43,7 @@ export default defineEventHandler (async (event)=>{
     // Generate Tokens
     // Access Token 
     // Refresh Token
-    const {accessToken,refreshToken} = generateTokens()
+    const {accessToken,refreshToken} = generateTokens(user)
 
 
     // Save it inside DB

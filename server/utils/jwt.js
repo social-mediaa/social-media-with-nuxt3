@@ -1,14 +1,29 @@
 import jwt from "jsonwebtoken";
-import { userTranformer } from "../transformers/user";
 
 const generateAccessToken = (user) => {
+  console.log("🚀 ~ generateAccessToken ~ user😒:", user);
   const config = useRuntimeConfig();
-  jwt.sign({ userId: user.id }, config.jwtAccessSecret, { expiresIn: "10m" });
+  return jwt.sign({ userId: user.id }, config.jwtAccessSecret, {
+    expiresIn: "10m",
+  });
 };
 
 const generateRefreshToken = (user) => {
+  console.log("🚀 ~ generateRefreshToken😎 ~ user:", user);
   const config = useRuntimeConfig();
-  jwt.sign({ userId: user.id }, config.jwtRefreshSecret, { expiresIn: "4h" });
+  return jwt.sign({ userId: user.id }, config.jwtRefreshSecret, {
+    expiresIn: "4h",
+  });
+};
+
+export const decodeRefreshToken = (token) => {
+  const config = useRuntimeConfig()
+  try {
+    return jwt.verify(token,config.jwtRefreshSecret)
+    // the token is expired or not 👆
+  } catch (error) {
+    return null
+  }
 };
 
 export const generateTokens = (user) => {
@@ -21,10 +36,10 @@ export const generateTokens = (user) => {
   };
 };
 
-
-export const sendRefreshToken = (event, token)=>{
-  setCookie(event.res ,"refresh_token",token , {
-    httpOnly:true,
-    sameSite:true
-  })
-}
+export const sendRefreshToken = (event, token) => {
+  console.log("EV💋", event);
+  setCookie(event, "refresh_token", token, {
+    httpOnly: true,
+    sameSite: true,
+  });
+};

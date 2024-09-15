@@ -4,9 +4,9 @@ import { userTranformer } from "~/server/transformers/user.js";
 
 export default defineEventHandler(async (event) => {
   const body = await readBody(event);
-  const { userName, email, password, repeatPassword, name } = body;
+  const { username, email, password, repeatPassword, name } = body;
 
-  if (!userName || !email || !password || !repeatPassword || !name) {
+  if (!username || !email || !password || !repeatPassword || !name) {
     return sendError(
       event,
       createError({
