@@ -1,12 +1,18 @@
+// import jwt_decode from "jwt-decode"
+import { jwtDecode } from "jwt-decode";
+
+
+
 export default () => {
   const useAuthToken = () => useState("auth_token");
-  const useAuthUser = () => useState("auth_user");
+  const useAuthUser = () =>useState("auth_user");
   const useAuthLoaing = () => useState("auth_loading", ()=>true);
 
   const setToken = (newToken) => {
     const authToken = useAuthToken();
     authToken.value = newToken;
   };
+
   const setUser = (newUser) => {
     console.log("🚀 ~ setUser ~ newUser🤦‍♂️:", newUser)
     const authUser = useAuthUser();
@@ -28,6 +34,7 @@ export default () => {
             password,
           },
         });
+        console.log('MMMMMMMMM',data);
         setToken(data.access_token);
         setUser(data.user);
         resolve(true);
@@ -60,6 +67,19 @@ export default () => {
     });
   };
 
+  const reRefreshAccessToken  = ()=>{
+    const authToken = useAuthToken()
+    if(!authToken.value){
+        return
+    }
+    const jwt = jwtDecode(authToken.value)
+    const newRefreshTime = jwt.exp - 60000
+    setTimeout(async () => {
+        await refreshToken()
+        reRefreshAccessToken()
+    }, newRefreshTime);
+  }
+
   const initAuth = () => {
     // alert("first")
     return new Promise(async (resolve, reject) => {
@@ -67,6 +87,8 @@ export default () => {
       try {
         await refreshToken();
         await getUser();
+
+        reRefreshAccessToken()
 
         resolve(true);
       } catch (error) {
