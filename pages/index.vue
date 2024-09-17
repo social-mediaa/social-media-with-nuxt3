@@ -4,6 +4,8 @@
        <MainSection title="Home" :loading="loading">
         
         {{ user }}
+
+        <TweetForn/>
         
        </MainSection>
     </div>

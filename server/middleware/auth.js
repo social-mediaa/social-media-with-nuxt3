@@ -5,7 +5,8 @@ import { getUserById } from "../db/users"
 
 export default defineEventHandler(async(event)=>{
     const endPoints = [
-        '/api/auth/user'
+        '/api/auth/user',
+        '/api/user/tweets'
     ]
     const isHandleByThisMiddleware = endPoints.some(endPoint=>{
         const pattern = new UrlPattern (endPoint)
