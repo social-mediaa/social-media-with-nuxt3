@@ -1,11 +1,11 @@
 <template>
     
     <div>
-       <MainSection title="Home" :loading="loading">
+       <MainSection title="Home" :loading="loading" :user="user">
         
-        {{ user }}
+        <!-- {{ user }} -->
 
-        <TweetForn/>
+        <TweetForm/>
         
        </MainSection>
     </div>

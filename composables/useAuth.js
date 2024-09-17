@@ -58,6 +58,7 @@ export default () => {
   const getUser = () => {
     return new Promise(async (resolve, reject) => {
       try {
+        console.log("enteredd get userrrrr");
         const data = await useFetchApi("/api/auth/user");
         setUser(data.user);
         resolve(true);
@@ -66,6 +67,7 @@ export default () => {
       }
     });
   };
+  
 
   const reRefreshAccessToken  = ()=>{
     const authToken = useAuthToken()
@@ -86,6 +88,7 @@ export default () => {
       setIsAuthLoading(true);
       try {
         await refreshToken();
+        console.log('hereeeeeeeeeeeeeeeeeeee');
         await getUser();
 
         reRefreshAccessToken()
