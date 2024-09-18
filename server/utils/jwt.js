@@ -4,7 +4,7 @@ const generateAccessToken = (user) => {
   console.log("🚀 ~ generateAccessToken ~ user😒:", user);
   const config = useRuntimeConfig();
   return jwt.sign({ userId: user.id }, config.jwtAccessSecret, {
-    expiresIn: "10m",
+    expiresIn: "24h",
   });
 };
 
@@ -28,9 +28,16 @@ export const decodeRefreshToken = (token) => {
 
 export const decodeAccessToken = (token) => {
   const config = useRuntimeConfig()
+  console.log('55787878',config.jwtAccessSecret ,token);
+  
   try {
-    return jwt.verify(token,config.jwtAccessSecret)
+    let x=jwt.verify(token,config.jwtAccessSecret)
+    console.log('xxxxxxxxxxxxx',x);
+    
+    return x
   } catch (error) {
+    console.log('errrrrrrrrrrrr',error);
+    
     return null
   }
 };

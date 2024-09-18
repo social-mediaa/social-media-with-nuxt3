@@ -32,6 +32,8 @@ export default defineEventHandler(async (event) => {
 
   try {
     const user = await getUserById(token.userId);
+    console.log('7777',token);
+    
     const { accessToken } = generateTokens(user);
     return {
       access_token: accessToken,

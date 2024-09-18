@@ -1,6 +1,6 @@
 <template>
     <div>
-        user::{{ user }}
+        <!-- user::{{ user }} -->
        <TweetFormInput :user="props.user"/>
     </div>
 </template>
