@@ -82,6 +82,10 @@
             </SidebarLeftTab>
         </div>
 
+        <div>
+            <UIButton>Tweet</UIButton>
+        </div>
+
     </div>
 
 </template>
