@@ -1,11 +1,13 @@
 export default (url,options={})=>{
+    console.log("options😜",options);
     const {useAuthToken} = useAuth()
 
-    return{
+    return $fetch(url, {
         ...options,
-        headers:{
+        headers: {
             ...options.headers,
-            Authorization:`Bearer ${useAuthToken().value}`
+            Authorization: `Bearer ${useAuthToken().value}`
         }
-    }
+    })
 }
+

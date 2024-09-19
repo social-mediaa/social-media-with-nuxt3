@@ -1,6 +1,7 @@
 import UrlPattern from "url-pattern"
 import { decodeAccessToken } from "../utils/jwt"
 import { getUserById } from "../db/users"
+// import { useRequestHeaders } from "nuxt/app";
 
 
 export default defineEventHandler(async(event)=>{
@@ -21,8 +22,9 @@ console.log('33333333333333333333333');
         return
     }
     
-    // const token = event.req.headers['authorization']?.split(' ')[1]
-    const token = parseCookies(event).refresh_token
+    const token = event.req.headers['authorization']?.split(' ')[1]
+    console.log("🚀 ~ defineEventHandler ~ tokennnn:", token)
+   
 
     
     const decoded = decodeAccessToken(token)

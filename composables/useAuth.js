@@ -59,14 +59,14 @@ export default () => {
     // return new Promise(async (resolve, reject) => {
       try {
         console.log("enteredd get userrrrr");
-        const data = await useFetch("/api/auth/user",{
+        const data = await useFetchApi("/api/auth/user",{
       
         });
         
         // const data = await $fetch("/api/auth/user",{
         //   method: "GET",
         // });
-        console.log('ssssssssssss',data.data);
+        console.log('ssssssssssss',data);
         
         setUser(data.user);
         resolve(true);
