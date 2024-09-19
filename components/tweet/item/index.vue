@@ -9,7 +9,10 @@
 
             <div v-for="image in tweet.mediaFiles" :key="image.id" class="flex my-3 mr-2 border-2 rounded-2xl" :class="tweeterBorderColor">
                 <img :src="image.url" alt="" class="w-full rounded-2xl">
+            </div>
 
+            <div>
+                
             </div>
         </div>
     </div>
