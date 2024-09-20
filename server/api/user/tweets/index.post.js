@@ -30,6 +30,7 @@ export default defineEventHandler(async(event)=>{
         authorId:userId
     }
     // const files2 = files.image[0]
+    
 
     const tweet = await createTweet(tweetData)
 

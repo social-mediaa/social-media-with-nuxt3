@@ -8,7 +8,8 @@ export default defineEventHandler(async(event)=>{
     console.log('22222222',parseCookies(event));
     const endPoints = [
         '/api/auth/user',
-        '/api/user/tweets'
+        '/api/user/tweets',
+        '/api/tweets'
     ]
     const isHandleByThisMiddleware = endPoints.some(endPoint=>{
         const pattern = new UrlPattern (endPoint)

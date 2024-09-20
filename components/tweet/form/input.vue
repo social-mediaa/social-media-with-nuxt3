@@ -23,7 +23,7 @@
         <!-- ICONS****** -->
         <div class="flex p-2 pl-14">
 
-            <div class="flex w-full text-white">
+            <div class="flex w-full text-white" >
                 <div class="p-2 text-blue-400 rounded-full hover:bg-blue-50 dark:hover:bg-dim-800 cursor-pointer"
                     @click="handleImageClick">
                     <svg viewBox="0 0 24 24" class="w-5 h-5" fill="currentColor">
@@ -92,7 +92,7 @@
                 </div>
             </div>
             <div class="ml-auto">
-                <UIButton size="sm">
+                <UIButton size="sm" :disabled="isDisabled" @onClick="handleFormSubmit">
                     <span class="font-bold">Tweet</span>
                 </UIButton>
                 <!-- <button @click="handleFormSubmit">
@@ -110,10 +110,11 @@ const { twitterBorderColor } = useTailwindConfig()
 const imageInput = ref()
 const selectedFile = ref(null)
 const inputImageUrl = ref(null)
+const text = ref('')
 
+const isDisabled = computed(()=>text.value==='')
 
 const emits = defineEmits(['onSubmit'])
-const text = ref('')
 const props = defineProps({
     user: {
         type: Object,

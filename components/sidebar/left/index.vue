@@ -7,7 +7,7 @@
                 </div>
             </nuxt-link>
         </div>
-        <div class="my-2 space-y-3">
+        <div class="my-2 space-y-1">
 
             <SidebarLeftTab active>
                 <template v-slot:icon>
@@ -82,8 +82,19 @@
             </SidebarLeftTab>
         </div>
 
-        <div>
-            <UIButton>Tweet</UIButton>
+        <div class="hidden xl:block">
+            <UIButton liquid size="lg">
+                <span class="font-bold">
+                    Tweet
+                </span>
+            </UIButton>
+        </div>
+        <div class="block xl:hidden">
+            <UIButton>
+               <div class="w-6 h-6 font-bold">
+                <PencilIcon />
+               </div>
+            </UIButton>
         </div>
 
     </div>
@@ -93,7 +104,7 @@
 <script setup>
 import { HomeIcon } from "@heroicons/vue/solid"
 
-import { HashtagIcon, BellIcon, InboxIcon, BookmarkIcon, DocumentTextIcon, UserIcon, DotsCircleHorizontalIcon } from "@heroicons/vue/outline"
+import { HashtagIcon, BellIcon, InboxIcon, BookmarkIcon, DocumentTextIcon, UserIcon, DotsCircleHorizontalIcon,PencilIcon } from "@heroicons/vue/outline"
 
 const { defaultTransition } = useTailwindConfig()
 </script>
