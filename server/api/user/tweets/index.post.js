@@ -30,7 +30,10 @@ export default defineEventHandler(async(event)=>{
         authorId:userId
     }
     // const files2 = files.image[0]
-    
+    const replyTo = fields.replyTo
+    if(replyTo && replyTo!=='null'){
+        tweetData.replyTo = replyTo
+    }
 
     const tweet = await createTweet(tweetData)
 

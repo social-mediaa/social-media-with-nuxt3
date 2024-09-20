@@ -4,6 +4,7 @@ export const userTranformer = (user)=>{
         name:user.name,
         email:user.name,
         username:user.username,
-        profileImage:user.profileImage
+        profileImage:user.profileImage,
+        handle:'@' + user.username
     }
 }
