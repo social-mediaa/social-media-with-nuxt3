@@ -5,6 +5,7 @@
             <UISpinner />
         </div>
         <div v-else>
+            <TweetItem :tweet="props.replyTo" v-if="props.replyTo && props.showReply" hideActions/>
             <TweetFormInput :user="props.user" @onSubmit="handleFormSubmit" :placeholder="props.placeholder"/>
         </div>
         <!-- replyTo::{{ replyTo }} -->
@@ -27,6 +28,10 @@ const props = defineProps({
     replyTo:{
         type:Object,
         default:null
+    },
+    showReply:{
+        type:Boolean,
+        default:false
     }
 })
 

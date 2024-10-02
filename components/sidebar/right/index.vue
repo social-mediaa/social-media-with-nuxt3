@@ -1,6 +1,18 @@
 <template>
     <div class="flex flex-col">
 
+        <!-- {{ search }} -->
+
+        <!-- Search bar -->
+        <div class="relative m-3">
+            <div class="absolute flex items-center h-full pl-4 text-gray-600 cursor-pointer">
+                <div class="w-6 h-6">
+                    <SearchIcon @click="handleSearch"/>
+                </div>
+            </div>
+            <input v-model="search" type="text" class="flex items-center w-full pl-12 text-sm text-black font-normal dark:text-gray-100 bg-gray-200 border border-gray-200 rounded-full shadow dark:bg-dim-400 dark:border-dim-400 focus:bg-gray-100 dark:focus:bg-dim-900 focus:outline-none focus:border focus:border-blue-200 h-9" placeholder="Search post">
+        </div>
+
         <!-- //Preview Card (what`s happening)***** -->
         <SidebarRightPreviewCard title="what`s happening">
 
@@ -40,6 +52,9 @@
 </template>
 
 <script setup>
+import { SearchIcon } from '@heroicons/vue/solid';
+const search = ref('')
+
 const whatsHappeningItem = ref([
     {
         title: "SpaceX",
@@ -73,4 +88,13 @@ const whoToFollowItems = ref([
     },
    
 ])
+
+function handleSearch(){
+    useRouter().push({
+        path:'/search',
+        query:{
+            q:search.value
+        }
+    })
+}
 </script>

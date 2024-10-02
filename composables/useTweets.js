@@ -41,14 +41,23 @@ export default ()=>{
 
 
     const usePostTweetModal = ()=>useState('post_tweet_modal',()=>false)
+    const useReplyTweet = ()=>useState('reply_tweet',()=>null)
+    // HELPER METHOD****👇
     const closePostTweetModal = ()=>{
         const postTweetModal = usePostTweetModal()
         postTweetModal.value= false
     }
-    const openPostTweetModal = ()=>{
+
+    const setReplyTo = (tweet)=>{
+        const replyTweet = useReplyTweet()
+        replyTweet.value = tweet
+    }
+    const openPostTweetModal = (tweet=null)=>{
         const postTweetModal = usePostTweetModal()
         postTweetModal.value= true
+        setReplyTo(tweet)
     }
+     // HELPER METHOD****👆
 
     return{
         postTweet,
@@ -56,6 +65,7 @@ export default ()=>{
         getTweetById,
         closePostTweetModal,
         usePostTweetModal,
-        openPostTweetModal
+        openPostTweetModal,
+        useReplyTweet
     }
 }

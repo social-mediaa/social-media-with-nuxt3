@@ -11,7 +11,7 @@
                 :class="tweeterBorderColor">
                 <img :src="image.url" alt="" class="w-full rounded-2xl">
             </div>
-            <div class="mt-2">
+            <div class="mt-2" v-if="!props.hideActions">
                 <TweetItemActions :tweet="props.tweet" :compact="props.compact" @on-comment-click="handleCommentClick"/>
             </div>
 
@@ -32,6 +32,10 @@ const props = defineProps({
         Required: true
     },
     compact:{
+        type:Boolean,
+        default:false
+    },
+    hideActions:{
         type:Boolean,
         default:false
     }

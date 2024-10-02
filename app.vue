@@ -33,7 +33,8 @@
       <AuthPage v-else />
 
       <UIModal :isOpen="postTweetModal" @on-close="handleModalClose">
-        <TweetForm :user="user" @on-success="handleFormsuccess" />
+      <!-- {{ replyTweet }} -->
+        <TweetForm :user="user" @onSuccess="handleFormsuccess" :replyTo="replyTweet" showReply/>
       </UIModal>
 
     </div>
@@ -44,13 +45,15 @@
 const darkmode = ref(false)
 const { useAuthToken, initAuth, useAuthLoaing } = useAuth()
 const isAuthLoading = useAuthLoaing()
-const { closePostTweetModal, usePostTweetModal, openPostTweetModal } = useTweets()
+const { closePostTweetModal, usePostTweetModal, openPostTweetModal,useReplyTweet } = useTweets()
 const user = useAuthToken()
 
 const postTweetModal = usePostTweetModal()
 // BY DEFAULT IS FALSE 👆
 
 const emitter =useEmitter()
+const replyTweet = useReplyTweet()
+
 emitter.$on('replyTweet',(tweet)=>{
   openPostTweetModal(tweet)
 })
@@ -62,6 +65,9 @@ onBeforeMount(() => {
 
 function handleFormsuccess(tweet) {
   closePostTweetModal()
+  navigateTo({
+    path:`/status/${tweet.id}`
+  })
 }
 
 function handleModalClose() {
@@ -69,6 +75,7 @@ function handleModalClose() {
 }
 
 function handleOpenTweetModal() {
-  openPostTweetModal()
+  openPostTweetModal(null)
+  // NULL >>>> OPEN FROM SIDE BAR HAS NO REPLY
 }
 </script>
