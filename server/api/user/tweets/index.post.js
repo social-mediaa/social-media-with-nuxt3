@@ -25,14 +25,15 @@ export default defineEventHandler(async(event)=>{
     const userId = event.context?.auth?.user?.id
 
     const tweetData = {
-        text :fields.text.join(),
+        text :fields.text?.join(),
         // TEST it 👆👆👆👆👆👆
         authorId:userId
     }
     // const files2 = files.image[0]
     const replyTo = fields.replyTo
-    if(replyTo && replyTo!=='null'){
-        tweetData.replyTo = replyTo
+
+    if (replyTo && replyTo !== 'null' && replyTo !== 'undefined') {
+        tweetData.replyToId = Number(replyTo)
     }
 
     const tweet = await createTweet(tweetData)

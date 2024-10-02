@@ -55,10 +55,13 @@ model Tweet {
   author User @relation(fields: [authorId],references: [id])
   authorId Int
 
-  replyToId Int? 
-  replyTo Tweet? @relation("replies",fields: [replyToId] , references: [id],onDelete: NoAction , onUpdate: NoAction)
+  // replyToId Int?
+  // replyTo Tweet? @relation("replies",fields: [replyToId] , references: [id],onDelete: NoAction , onUpdate: NoAction)
+  // replies Tweet[] @relation("replies")
 
-  replies Tweet[] @relation("replies")
+   replyToId Int? 
+  replyTo   Tweet?  @relation("replies", fields: [replyToId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  replies   Tweet[] @relation("replies")
 
   // MEDIA FILES
   mediaFiles MediaFile[]

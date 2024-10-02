@@ -1,7 +1,10 @@
 export default ()=>{
     const postTweet = (formData)=>{
+        console.log('DATAAAAAAA',formData);
         const form = new FormData()
         form.append('text',formData.text)
+        form.append('replyTo',formData.replyTo)
+
         formData.mediaFiles.forEach((mediaFile,index)=>{
             form.append("media_file_"+index , mediaFile)
         })
@@ -25,8 +28,34 @@ export default ()=>{
         })
     }
 
+    const getTweetById = (tweetId)=>{
+        return new Promise(async(resolve,reject)=>{
+            try {
+                const response = await useFetchApi(`/api/tweets/${tweetId}`)
+                resolve(response)
+            } catch (error) {
+               reject(error) 
+            }
+        })
+    }
+
+
+    const usePostTweetModal = ()=>useState('post_tweet_modal',()=>false)
+    const closePostTweetModal = ()=>{
+        const postTweetModal = usePostTweetModal()
+        postTweetModal.value= false
+    }
+    const openPostTweetModal = ()=>{
+        const postTweetModal = usePostTweetModal()
+        postTweetModal.value= true
+    }
+
     return{
         postTweet,
-        getHomeTweets
+        getHomeTweets,
+        getTweetById,
+        closePostTweetModal,
+        usePostTweetModal,
+        openPostTweetModal
     }
 }

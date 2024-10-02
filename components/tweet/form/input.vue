@@ -6,7 +6,7 @@
                 <img :src="props.user?.profileImage" alt="" class="inline-block w-10 h-10 rounded-full">
             </div>
             <div class="w-full p-2">
-                <textarea placeholder="what`s happening ?" v-model="text"
+                <textarea :placeholder="props.placeholder" v-model="text"
                     class="w-full h-10 text-lg text-gray-900 placeholder:text-gray-400 bg-transparent border-0 dark:text-white focus:ring-0">
                 </textarea>
             </div>
@@ -119,6 +119,10 @@ const props = defineProps({
     user: {
         type: Object,
         Required: true
+    },
+    placeholder:{
+        type:String,
+        Required:true
     }
 })
 

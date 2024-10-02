@@ -4,6 +4,7 @@ import human from 'human-time'
 
 
 export const tweetTransformer = ((tweet)=>{
+    console.log('tweettttt',tweet);
     return{
         id:tweet.id,
         text:tweet.text,
