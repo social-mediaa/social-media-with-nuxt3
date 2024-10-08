@@ -8,25 +8,26 @@
         </head>
         
 
-        <TweetListFeed :tweets="[]"/>
+        <TweetListFeed :tweets="searchTweets"/>
        </MainSection>
     </div>
 </template>
 
 <script setup>
-const homeTweets = ref([])
+const searchTweets = ref([])
 const loading = ref(false)
 const {getTweets} = useTweets()
-
+const searchQuery = useRoute().query.q
 
 onBeforeMount(async()=>{
+    console.log('🤭',searchQuery);
     loading.value=true
     try {
         
         const {tweets} = await getTweets({
-            
+            query:searchQuery
         })
-        homeTweets.value = tweets
+        searchTweets.value = tweets
     } catch (error) {
         console.log(error);
     }finally{

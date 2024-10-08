@@ -2,7 +2,10 @@ import { getTweets } from "~/server/db/tweets"
 import { tweetTransformer } from "~/server/transformers/tweet"
 
 export default defineEventHandler(async(event)=>{
-    const tweets = await getTweets({
+    const {query} = getQuery(event)
+    console.log("🚀 ~ defineEventHandler ~ queryyyyyyy:", query)
+
+    let primsaQuery ={
         include:{
             author:true,
             mediaFiles:true,
@@ -22,7 +25,21 @@ export default defineEventHandler(async(event)=>{
                 createdAt:'desc'
             }
         ]
-    })
+    }
+
+    if (!!query) {
+        primsaQuery = {
+            ...primsaQuery,
+            where: {
+                text: {
+                    contains: query
+                }
+            }
+        }
+    }
+
+    const tweets = await getTweets(primsaQuery)
+
     return{
         tweets:tweets.map(tweetTransformer)
     }
