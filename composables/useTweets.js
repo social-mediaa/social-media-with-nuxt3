@@ -14,7 +14,7 @@ export default ()=>{
         })
     }
 
-    const getHomeTweets = ()=>{
+    const getTweets = ()=>{
         return new Promise(async(resolve,reject)=>{
             try {
                 const response = await useFetchApi('/api/tweets',{
@@ -61,7 +61,7 @@ export default ()=>{
 
     return{
         postTweet,
-        getHomeTweets,
+        getTweets,
         getTweetById,
         closePostTweetModal,
         usePostTweetModal,
