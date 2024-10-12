@@ -26,6 +26,8 @@ const {useAuthUser} = useAuth()
 const user = useAuthUser()
 // console.log("🚀 ~ userrrrrrrrrrr:", user)
 
+
+
 onBeforeMount(async()=>{
     loading.value=true
     try {

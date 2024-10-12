@@ -58,6 +58,10 @@ emitter.$on('replyTweet',(tweet)=>{
   openPostTweetModal(tweet)
 })
 
+emitter.$on('toggleDarkMode',()=>{
+  darkmode.value = !darkmode.value
+})
+
 
 onBeforeMount(() => {
   initAuth()

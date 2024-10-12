@@ -80,9 +80,8 @@
                     More
                 </template>
             </SidebarLeftTab>
-        </div>
 
-        <div class="hidden xl:block" @click="emits('onTweet')">
+            <div class="hidden xl:block" @click="emits('onTweet')">
             <UIButton liquid size="lg">
                 <span class="font-bold">
                     Tweet
@@ -97,6 +96,13 @@
             </UIButton>
         </div>
 
+        </div>
+
+        <div class="flex flex-row items-center justify-center px-2 py-2 mx-auto mt-auto mb-5 rounded-full cursor-pointer w-14 xl:w-full hover:bg-gray-100 dark:hover:bg-dim-800">
+            
+        </div>
+
+       
     </div>
 
 </template>

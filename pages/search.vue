@@ -16,15 +16,25 @@
 <script setup>
 const searchTweets = ref([])
 const loading = ref(false)
-const {getTweets} = useTweets()
+const {getTweets:getTweetsComposable} = useTweets()
+// KNOW GETTWEETS AS GETTWEETSCOMPOSABLES 👆
+
 const searchQuery = useRoute().query.q
 
-onBeforeMount(async()=>{
+
+watch (()=>useRoute().fullPath , ()=>getTweet())
+
+
+
+onBeforeMount(()=>{
+    getTweets()
+})
+
+async function getTweets(){
     console.log('🤭',searchQuery);
     loading.value=true
     try {
-        
-        const {tweets} = await getTweets({
+        const {tweets} = await getTweetsComposable({
             query:searchQuery
         })
         searchTweets.value = tweets
@@ -33,7 +43,7 @@ onBeforeMount(async()=>{
     }finally{
         loading.value = false
     }
-})
+}
 
 
 </script>
