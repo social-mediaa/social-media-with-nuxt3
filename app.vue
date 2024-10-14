@@ -47,7 +47,7 @@ const { useAuthToken, initAuth, useAuthLoaing, logout} = useAuth()
 const isAuthLoading = useAuthLoaing()
 const { closePostTweetModal, usePostTweetModal, openPostTweetModal,useReplyTweet } = useTweets()
 const user = useAuthToken()
-console.log("🚀 ~ user🤦‍♀️🤦‍♀️🤦‍♀️:", user)
+// console.log("🚀 ~ user🤦‍♀️🤦‍♀️🤦‍♀️:", user)
 
 const postTweetModal = usePostTweetModal()
 // BY DEFAULT IS FALSE 👆
