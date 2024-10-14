@@ -9,7 +9,7 @@
           <!-- left sidebar *******-->
           <div class="hidden  md:block xs:col-span-1 xl:col-span-2 ">
             <div class="sticky top-0">
-              <SidebarLeft @on-tweet="handleOpenTweetModal" />
+              <SidebarLeft @on-tweet="handleOpenTweetModal" :user="user" @on-logout="handleUserLogout"/>
             </div>
           </div>
 
@@ -43,10 +43,11 @@
 
 <script setup>
 const darkmode = ref(false)
-const { useAuthToken, initAuth, useAuthLoaing } = useAuth()
+const { useAuthToken, initAuth, useAuthLoaing, logout} = useAuth()
 const isAuthLoading = useAuthLoaing()
 const { closePostTweetModal, usePostTweetModal, openPostTweetModal,useReplyTweet } = useTweets()
 const user = useAuthToken()
+console.log("🚀 ~ user🤦‍♀️🤦‍♀️🤦‍♀️:", user)
 
 const postTweetModal = usePostTweetModal()
 // BY DEFAULT IS FALSE 👆
@@ -81,5 +82,9 @@ function handleModalClose() {
 function handleOpenTweetModal() {
   openPostTweetModal(null)
   // NULL >>>> OPEN FROM SIDE BAR HAS NO REPLY
+}
+
+function handleUserLogout(){
+  logout()
 }
 </script>

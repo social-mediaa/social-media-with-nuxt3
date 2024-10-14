@@ -4,7 +4,7 @@
         <!-- {{ search }} -->
 
         <!-- Search bar -->
-        <div class="relative m-3">
+        <div class="relative mt-2">
             <div class="absolute flex items-center h-full pl-4 text-gray-600 cursor-pointer">
                 <div class="w-6 h-6">
                     <SearchIcon @click="handleSearch"/>
@@ -32,7 +32,7 @@
 
             <SidebarRightPreviewCardItem v-for="item in whoToFollowItems">
 
-                <div class="flex flex-row justify-between items-center p-2">
+                <div class="flex flex-row justify-between items-center p-1">
                     <div class="flex flex-row ">
                         <img class="w-10 h-10 rounded-full" :src="item.image" :alt="item.name">
 
@@ -50,7 +50,7 @@
         </SidebarRightPreviewCard>
 
         <footer>
-            <ul class="mx-2 my-4 text-xs text-gray-500 ">
+            <ul class="mx-2 my-1 text-xs text-gray-500 ">
                 <li class="inline-block mx-2 ">
                     <a href="#" class="hover:underline" @click.prevent="handleToggleDarkMode">Dark Mode</a>
                 </li>

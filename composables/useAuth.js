@@ -110,11 +110,28 @@ export default () => {
     });
   };
 
+
+  const logout = ()=>{
+    return new Promise(async (resolve,reject)=>{
+      try {
+        await useFetchApi('/api/auth/logout',{
+          method:'POST'
+        })
+        setToken(null)
+        setUser(null)
+        resolve()
+      } catch (error) {
+        reject(error)
+      }
+    })
+  }
+
   return {
     login,
     useAuthToken,
     initAuth,
     useAuthUser,
-    useAuthLoaing
+    useAuthLoaing,
+    logout
   };
 };

@@ -7,8 +7,8 @@
                 </div>
             </nuxt-link>
         </div>
-        <div class="my-2 space-y-1">
-
+        <!-- space-y-1👇 -->
+        <div class="my-1">
             <SidebarLeftTab active>
                 <template v-slot:icon>
                     <HomeIcon />
@@ -98,8 +98,25 @@
 
         </div>
 
-        <div class="flex flex-row items-center justify-center px-2 py-2 mx-auto mt-auto mb-5 rounded-full cursor-pointer w-14 xl:w-full hover:bg-gray-100 dark:hover:bg-dim-800">
-            
+        <div class="flex flex-row items-center justify-center px-2 py-2 mx-auto mt-auto mb-5 rounded-full cursor-pointer w-14 xl:w-full hover:bg-gray-100 dark:hover:bg-dim-800" :class="defaultTransition"
+        @click="emits('onLogout')">
+            <!-- img ::{{ props.user.value }} -->
+            <div class="flex flex-row ">
+                <img :src="props.user.profileImage" class="w-10 h-10 rounded-full" alt="">
+                <div class="flex-col hidden xl:block ml-2 ">
+                    <h1 class="text-sm font-bold text-gray-800 dark:text-white">
+                        name :{{ user.name }}
+                    </h1>
+                    <p class="text-sm text-gray-400">
+                        handle:{{ user.handle }}
+                    </p>
+                </div>
+            </div>
+            <div class="hidden ml-auto xl:block">
+                <div class="w-6 h-6">
+                    <ChevronDownIcon/>
+                </div>
+            </div>
         </div>
 
        
@@ -108,13 +125,19 @@
 </template>
 
 <script setup>
-const emits = defineEmits(['onTweet'])
+const emits = defineEmits(['onTweet','onLogout'])
 
 import { HomeIcon } from "@heroicons/vue/solid"
 
-import { HashtagIcon, BellIcon, InboxIcon, BookmarkIcon, DocumentTextIcon, UserIcon, DotsCircleHorizontalIcon,PencilIcon } from "@heroicons/vue/outline"
+import { HashtagIcon, BellIcon, InboxIcon, BookmarkIcon, DocumentTextIcon, UserIcon, DotsCircleHorizontalIcon,PencilIcon,ChevronDownIcon } from "@heroicons/vue/outline"
 
 const { defaultTransition } = useTailwindConfig()
 
+const props = defineProps({
+    user:{
+        type:Object,
+        Required:true
+    }
+})
 
 </script>
