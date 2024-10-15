@@ -26,6 +26,8 @@ const data = reactive({
 
 
 async function handleLogin(){
+    const callToastify = useToastify()
+    callToastify('success')
     const {login} = useAuth()
 
     data.loading = true
