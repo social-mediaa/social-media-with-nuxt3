@@ -20,7 +20,7 @@ const toastifyOption = {
 };
 
 export default () => {
-  const successToastify = (_text, _title = "") => {
+  const SuccessToastify = (_text, _title = "") => {
     return toastr.success(_text, _title, toastifyOption);
   };
   const InformToastify=(_text, _title = "")=> {
@@ -35,7 +35,7 @@ export default () => {
   }
 
   return {
-    successToastify,
+    SuccessToastify,
     InformToastify,
     WarningToastify,
     ErrorToastify
