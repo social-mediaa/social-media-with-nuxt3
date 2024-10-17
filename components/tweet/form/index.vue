@@ -46,8 +46,12 @@ async function handleFormSubmit(data) {
         })
         // alert(JSON.stringify(response))
         emits('onSuccess',response.tweet)
+        const {SuccessToastify} = useToastify()
+        SuccessToastify('Successfully Done')
     } catch (error) {
         console.log(error);
+        const {ErrorToastify} = useToastify()
+        ErrorToastify('Sth went wrong.try again')
     }finally{
         loading.value= false
     }
