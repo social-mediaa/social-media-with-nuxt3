@@ -4,13 +4,22 @@
         <!-- {{ search }} -->
 
         <!-- Search bar -->
-        <div class="relative mt-2">
+        <div class="relative mt-2 flex">
             <div class="absolute flex items-center h-full pl-4 text-gray-600 cursor-pointer">
                 <div class="w-6 h-6">
-                    <SearchIcon @click="handleSearch"/>
+                    <SearchIcon @click="handleSearch" />
                 </div>
             </div>
-            <input v-model="search" type="text" class="flex items-center w-full pl-12 text-sm text-black font-normal dark:text-gray-100 bg-gray-200 border border-gray-200 rounded-full shadow dark:bg-dim-400 dark:border-dim-400 focus:bg-gray-100 dark:focus:bg-dim-900 focus:outline-none focus:border focus:border-blue-200 h-9" placeholder="Search post">
+            <input v-model="search" type="text"
+                class="flex items-center  pl-12 text-sm text-black font-normal dark:text-gray-100 bg-gray-200 border border-gray-200 rounded-full shadow dark:bg-dim-400 dark:border-dim-400 focus:bg-gray-100 dark:focus:bg-dim-900 focus:outline-none focus:border focus:border-blue-200 h-9"
+                placeholder="Search post">
+
+            <div class="checkbox-wrapper-54 ml-1" @click.prevent="handleToggleDarkMode2">
+                <label class="switch " >
+                    <input type="checkbox">
+                    <span class="slider border border-blue-300"></span>
+                </label>
+            </div>
         </div>
 
         <!-- //Preview Card (what`s happening)***** -->
@@ -28,7 +37,7 @@
         </SidebarRightPreviewCard>
 
         <!-- //Preview Card (who to follow)***** -->
-        <SidebarRightPreviewCard title="who to follow" >
+        <SidebarRightPreviewCard title="who to follow">
 
             <SidebarRightPreviewCardItem v-for="item in whoToFollowItems">
 
@@ -42,7 +51,8 @@
                         </div>
                     </div>
                     <div class="flex h-full">
-                        <button class="px-4 py-2 bg-black text-white rounded-full font-bold text-xs dark:text-black dark:bg-white">Follow</button>
+                        <button
+                            class="px-4 py-2 bg-black text-white rounded-full font-bold text-xs dark:text-black dark:bg-white">Follow</button>
                     </div>
                 </div>
             </SidebarRightPreviewCardItem>
@@ -70,7 +80,7 @@
                     <a href="#" class="hover:underline">More</a>
                 </li>
                 <li class="inline-block mx-2 ">
-                    @ David 2024 
+                    @ David 2024
                 </li>
             </ul>
         </footer>
@@ -100,33 +110,102 @@ const whatsHappeningItem = ref([
 
 const whoToFollowItems = ref([
     {
-        name:'Bahlool Ramesh',
-        handle:"@BhlRmsh",
-        image:"https://picsum.photos/200/200"
+        name: 'Bahlool Ramesh',
+        handle: "@BhlRmsh",
+        image: "https://picsum.photos/200/200"
     },
     {
-        name:'Bahlool Ramesh',
-        handle:"@BhlRmsh",
-        image:"https://picsum.photos/200/200"
+        name: 'Bahlool Ramesh',
+        handle: "@BhlRmsh",
+        image: "https://picsum.photos/200/200"
     },
     {
-        name:'Bahlool Ramesh',
-        handle:"@BhlRmsh",
-        image:"https://picsum.photos/200/200"
+        name: 'Bahlool Ramesh',
+        handle: "@BhlRmsh",
+        image: "https://picsum.photos/200/200"
     },
-   
+
 ])
 
-function handleSearch(){
+function handleSearch() {
     useRouter().push({
-        path:'/search',
-        query:{
-            q:search.value
+        path: '/search',
+        query: {
+            q: search.value
         }
     })
 }
 
-function handleToggleDarkMode(){
+function handleToggleDarkMode() {
     emitter.$emit('toggleDarkMode')
 }
+
+function handleToggleDarkMode2(){
+    console.log('ggggggggggggg');
+}
 </script>
+
+<style scoped>
+.checkbox-wrapper-54 input[type="checkbox"] {
+      visibility: hidden;
+      display: none;
+    }
+  
+    .checkbox-wrapper-54 *,
+    .checkbox-wrapper-54 ::after,
+    .checkbox-wrapper-54 ::before {
+      box-sizing: border-box;
+    }
+  
+    /* The switch - the box around the slider */
+    .checkbox-wrapper-54 .switch {
+      --width-of-switch: 3.5em;
+      --height-of-switch: 2em;
+      /* size of sliding icon -- sun and moon */
+      --size-of-icon: 1.4em;
+      /* it is like a inline-padding of switch */
+      --slider-offset: 0.3em;
+      position: relative;
+      width: var(--width-of-switch);
+      height: var(--height-of-switch);
+      display: inline-block;
+    }
+  
+    /* The slider */
+    .checkbox-wrapper-54 .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #f4f4f5;
+      transition: .4s;
+      border-radius: 30px;
+    }
+  
+    .checkbox-wrapper-54 .slider:before {
+      position: absolute;
+      content: "";
+      height: var(--size-of-icon,1.4em);
+      width: var(--size-of-icon,1.4em);
+      border-radius: 20px;
+      left: var(--slider-offset,0.3em);
+      top: 50%;
+      transform: translateY(-50%);
+      background: linear-gradient(40deg,#00a2ff,#e8f713b9 70%);
+      ;
+     transition: .4s;
+    }
+  
+    .checkbox-wrapper-54 input:checked + .slider {
+      background-color: #303136;
+    }
+  
+    .checkbox-wrapper-54 input:checked + .slider:before {
+      left: calc(100% - (var(--size-of-icon,1.4em) + var(--slider-offset,0.3em)));
+      background: #303136;
+      /* change the value of second inset in box-shadow to change the angle and direction of the moon  */
+      box-shadow: inset -3px -2px 5px -2px #8983f7, inset -10px -4px 0 0 #a3dafb;
+    }
+</style>
